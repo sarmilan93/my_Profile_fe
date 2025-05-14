@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87); */
+  background-color: white;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+input:-webkit-autofill {
+  background-color: transparent !important; /* Or your desired color */
+  color: black !important; /* Ensures text color matches */
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* Ensures background color is applied */
+  transition: background-color 5000s ease-in-out 0s; /* Prevents flashing */
+  -webkit-text-fill-color: black !important;
+}
+
+.custom-checkbox {
+  border:2px dotted #00f;
+  display:block;
+  background:#ff0000;
+}
