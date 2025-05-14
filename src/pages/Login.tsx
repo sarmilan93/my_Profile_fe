@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { Eye, EyeOff } from "lucide-react";
 import { login } from "../services/authService";
@@ -128,12 +128,9 @@ export default function Login() {
 
             <div className="text-center mt-4">
                 <span className="text-sm text-black">No account? </span>
-                <a
-                    href="/register"
-                    className="text-sm text-blue-600 hover:underline"
-                >
+                <Link to="/register" className="text-sm text-blue-600 hover:underline">
                     Register here
-                </a>
+                </Link>
             </div>
 
             <ToastContainer />
