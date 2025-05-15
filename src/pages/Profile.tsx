@@ -145,46 +145,53 @@ export default function Profile() {
 
   const basicProfileUpdate = async (data: any) => {
     try {
-
       const res = await updateBasicProfile(data);
       if (res?.updatedAt) {
         toast.success('Profile updated successfully!', {
           position: 'bottom-center',
           autoClose: 3000,
         });
-
+  
         setProfileData(profileData => ({
           ...profileData,
-          ...res
+          ...res,
         }));
       }
-
     } catch (error) {
-
-      if (error instanceof Error) {
-        if ((error as any)?.response?.data) {
-          toast.error((error as any).response.data.message, {
+      if ((error as any)?.response) {
+        const status = (error as any).response.status;
+        const message = (error as any).response.data?.message || "Failed to update profile";
+  
+        if (status === 413) {
+          toast.error("File too large. Please upload a smaller image.", {
             position: "bottom-center",
             autoClose: 3000,
           });
         } else {
-          toast.error("Failed to update profile", {
+          toast.error(message, {
             position: "bottom-center",
             autoClose: 3000,
           });
         }
+  
+        throw error;
+      } else if (error instanceof Error) {
+        toast.error("Failed to update profile", {
+          position: "bottom-center",
+          autoClose: 3000,
+        });
         throw error;
       } else {
-        console.log("failed:", error);
-        toast.error(error, {
+        console.log("Unknown error:", error);
+        toast.error(String(error), {
           position: "bottom-center",
           autoClose: 3000,
         });
         throw error;
       }
-
     }
-  }
+  };
+  
 
   const additionalProfileUpdate = async (data: any) => {
     try {
