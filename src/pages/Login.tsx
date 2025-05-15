@@ -37,7 +37,7 @@ export default function Login() {
             });
             localStorage.setItem("token", res.token);
             setTimeout(() => {
-                navigate("/");
+                navigate("/profile");
             }, 3000);
         } catch (error: unknown) {
             if (error instanceof Error) {
