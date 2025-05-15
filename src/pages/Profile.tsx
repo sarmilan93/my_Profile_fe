@@ -159,7 +159,7 @@ export default function Profile() {
         }));
       }
 
-    } catch (error: unknown) {
+    } catch (error) {
 
       if (error instanceof Error) {
         if ((error as any)?.response?.data) {
@@ -176,6 +176,10 @@ export default function Profile() {
         throw error;
       } else {
         console.log("failed:", error);
+        toast.error(error, {
+          position: "bottom-center",
+          autoClose: 3000,
+        });
         throw error;
       }
 
